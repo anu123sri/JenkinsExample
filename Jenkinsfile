@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/anu123sri/JenkinsExample'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat 'mvn clean package'
