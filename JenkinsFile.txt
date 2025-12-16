@@ -5,18 +5,26 @@ pipeline {
         jdk 'Java17'
         maven 'Maven3'
     }
+    
+    stages{
+        stage('Checkout'){
+           steps{
+             git 'https://github.com/anu123sri/JenkinsExample'
+                }
+         }                   
 
     stages {
-        stage('Verify Tools') {
-            steps {
-                bat 'java -version'
-                bat 'mvn -version'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat 'mvn clean package'
+            }
+        }
+
+        stage('Run App') {
+            steps {
+                bat '''
+                start "" java -jar target\\SbDemo-0.0.1-SNAPSHOT.jar
+'''
             }
         }
     }
